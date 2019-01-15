@@ -70,7 +70,7 @@ public class OpenCDSConfigUploaderImpl implements OpenCDSConfigUploader {
     @Override
     public Response getCdm(String cdmId) throws URISyntaxException {
         final String METHODNAME = "getCdm ";
-        LOGGER.debug(METHODNAME, "cdmId=", cdmId);
+        LOGGER.info(METHODNAME, "cdmId=", cdmId);
         Response response = get(cdmId, cdmEndpoint);
         LOGGER.debug(METHODNAME, "response=", response);
         return response;
@@ -115,10 +115,10 @@ public class OpenCDSConfigUploaderImpl implements OpenCDSConfigUploader {
     public Response getKnowledgeModule(String id) throws URISyntaxException {
         final String METHODNAME = "getKnowledgeModule ";
 
-        LOGGER.debug(METHODNAME, "id=", id);
+        LOGGER.info(METHODNAME, "id=", id);
         HttpClient httpClient = HttpClientBuilder.create().build();
         URI uri = createUri("http", port, host, kmEndpoint + "/" + id + "/package");
-        LOGGER.debug(METHODNAME, "uri=", uri);
+        LOGGER.info(METHODNAME, "uri=", uri);
         HttpGet getRequest = new HttpGet(uri);
         setHttpHeader(getRequest, headerBytesAccept, null, headerAuth);
         HttpResponse httpResponse;
@@ -250,14 +250,14 @@ public class OpenCDSConfigUploaderImpl implements OpenCDSConfigUploader {
     public Response get(String id, String endpoint) throws URISyntaxException {
         final String METHODNAME = "get ";
 
-        LOGGER.debug(METHODNAME, "id=", id);
-        LOGGER.debug(METHODNAME, "endpoint=", endpoint);
+        LOGGER.info(METHODNAME, "id=", id);
+        LOGGER.info(METHODNAME, "endpoint=", endpoint);
         HttpClient httpClient = HttpClientBuilder.create().build();
         if (id != null) {
             endpoint = endpoint + "/" + id;
         }
         URI uri = createUri("http", port, host, endpoint);
-        LOGGER.debug(METHODNAME, "uri=", uri);
+        LOGGER.info(METHODNAME, "uri=", uri);
         HttpGet getRequest = new HttpGet(uri);
         setHttpHeader(getRequest, headerAccept, headerContentType, headerAuth);
         HttpResponse httpResponse;
